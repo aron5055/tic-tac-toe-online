@@ -1,4 +1,4 @@
-import type { Square } from "@/types/games";
+import type { Square } from "@/types/game";
 
 type SquareProps = {
   val: Square;

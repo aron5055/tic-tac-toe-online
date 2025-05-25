@@ -1,4 +1,4 @@
-import type { Squares, Square } from "@/types/games";
+import type { Square, Squares } from "@/types/game";
 
 export function calculateWinner(squares: Squares): Square {
   const lines = [

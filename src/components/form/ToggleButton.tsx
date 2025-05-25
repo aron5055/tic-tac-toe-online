@@ -12,7 +12,7 @@ export default function ToggleButton({
 }: ToggleButtonProps) {
   return (
     <Button
-      className="border-none rounded-lg"
+      className="border-none rounded-lg hover:bg-inherit"
       type="button"
       variant="outline"
       onClick={handleHide}

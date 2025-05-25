@@ -1,5 +1,5 @@
+import type { Squares } from "@/types/game";
 import { Square } from "./Square";
-import type { Squares } from "@/types/games";
 
 import { calculateWinner } from "@/features/ticTacToe/calculateWinner";
 
