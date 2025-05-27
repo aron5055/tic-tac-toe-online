@@ -2,16 +2,16 @@ import PasswordField from "@/components/form/PasswordFied";
 import SimpleField from "@/components/form/SimpleField";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Toaster } from "@/components/ui/toaster";
 import { fieldMeta } from "@/data/fieldMeta";
 import { toast } from "@/hooks/use-toast";
 import supabase from "@/lib/supabase";
 import { loginSchema, type LoginData } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const form = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -38,6 +38,7 @@ export default function LoginForm() {
       toast({
         description: "登陆成功",
       });
+      void navigate("/game", { replace: true });
     }
   }
 
@@ -73,7 +74,6 @@ export default function LoginForm() {
           没有账号？点击这里注册
         </Link>
       </div>
-      <Toaster />
     </>
   );
 }

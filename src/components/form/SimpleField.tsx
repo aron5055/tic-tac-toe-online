@@ -16,8 +16,14 @@ export default function SimpleField<T extends Field>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FieldWrapper label={label} description={description}>
-          <Input {...field} type={type} placeholder={placeholder ?? label} />
+        <FieldWrapper label={label} description={description} htmlfor={name}>
+          <Input
+            id={name}
+            {...field}
+            type={type}
+            placeholder={placeholder ?? label}
+            autoComplete="on"
+          />
         </FieldWrapper>
       )}
     />

@@ -22,6 +22,7 @@ export default function PasswordField<T extends Field>({
         <FieldWrapper
           label={label}
           description={description}
+          htmlfor={name}
           suffix={
             <ToggleButton
               visible={visible}
@@ -30,6 +31,7 @@ export default function PasswordField<T extends Field>({
           }
         >
           <Input
+            id={name}
             type={visible ? "text" : "password"}
             placeholder={placeholder ?? label}
             {...field}

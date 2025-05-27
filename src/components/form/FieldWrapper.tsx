@@ -12,6 +12,7 @@ interface FieldWrapperProsp {
   description?: string;
   children: ReactNode;
   suffix?: ReactNode;
+  htmlfor: string;
 }
 
 export default function FieldWrapper({
@@ -19,10 +20,11 @@ export default function FieldWrapper({
   description,
   children,
   suffix,
+  htmlfor,
 }: FieldWrapperProsp) {
   return (
     <FormItem>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel htmlFor={htmlfor}>{label}</FormLabel>
       <FormControl>
         <div className="relative">
           {children}

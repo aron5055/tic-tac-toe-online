@@ -2,12 +2,12 @@ import PasswordField from "@/components/form/PasswordFied";
 import SimpleField from "@/components/form/SimpleField";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Toaster } from "@/components/ui/toaster";
 import { fieldMeta } from "@/data/fieldMeta";
 import { toast } from "@/hooks/use-toast";
 import supabase from "@/lib/supabase";
 import { type RegisterData, registerSchema } from "@/schemas/registerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { AuthError } from "@supabase/supabase-js";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 
@@ -37,15 +37,17 @@ export default function RegisterForm() {
     });
 
     if (error) {
+      const message = errorMessage(error);
       toast({
         variant: "destructive",
-        title: "注册失败，请重试",
-        description: error.message,
+        title: "操作失败",
+        description: message,
       });
     } else {
       toast({
         description: "注册成功",
       });
+      void navigate("/login");
     }
   }
 
@@ -89,7 +91,21 @@ export default function RegisterForm() {
           已有账号？点击这里登陆
         </Link>
       </div>
-      <Toaster />
     </>
   );
+}
+
+function errorMessage(error: AuthError): string {
+  let message = "注册失败，请重试";
+  switch (error.code) {
+    case "user_already_exists":
+      message = "用户名或邮箱已注册过，请换一个试试。";
+      break;
+    case "network_error":
+      message = "网络连接出现问题，请检查您的网络。";
+      break;
+    default:
+      break;
+  }
+  return message;
 }

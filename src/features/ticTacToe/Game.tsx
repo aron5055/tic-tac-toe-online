@@ -1,3 +1,4 @@
+import Header from "@/components/layout/Header/Header";
 import type { Squares } from "@/types/game";
 import { useState } from "react";
 import { Board } from "./Board";
@@ -12,8 +13,11 @@ export default function Game() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Board isXPlayer={isXPlayer} squares={squares} onPlay={handlePlay} />
-    </div>
+    <>
+      <Header />
+      <div className="flex justify-center items-center h-screen">
+        <Board isXPlayer={isXPlayer} squares={squares} onPlay={handlePlay} />
+      </div>
+    </>
   );
 }
